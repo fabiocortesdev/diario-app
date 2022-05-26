@@ -1,0 +1,32 @@
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.component.html',
+  styleUrls: ['./cadastro.component.css']
+})
+export class CadastroComponent implements OnInit {
+  signupForm = this.fb.group(
+    {
+    nome:['', [Validators.required]],
+    nick:['', [Validators.required]],
+    email:['', [Validators.required, Validators.email]],
+    senha:['', [Validators.required, Validators.minLength(8)]],
+    confirma_senha:[''],
+    },
+    { Validators: [this.matchPasswords] }
+  );
+
+  matchPasswords(control: AbstractControl): ValidationErrors | null {
+    return null; // TODO: finalizar vlidator
+  }
+  
+  constructor(private fb: FormBuilder) { }
+  onSubmit() {}
+
+  onLoginGoogle() {}
+
+  ngOnInit(): void {}
+
+}
