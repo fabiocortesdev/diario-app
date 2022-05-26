@@ -19,7 +19,9 @@ export class CadastroComponent implements OnInit {
   );
 
   matchPasswords(control: AbstractControl): ValidationErrors | null {
-    return null; // TODO: finalizar vlidator
+    return control.get('senha')?.value !== control.get('confirma_senha')?.value
+     ? { matchPasswords: true}
+     : null;
   }
   
   constructor(private fb: FormBuilder) { }
